@@ -15,4 +15,4 @@ She successfully encrypted her messages using:
 #Wanna Meet Areeba? 
 Here she is!!
 
-![Areeba](/Data/Areeba.jpg)
+![Areeba](/Data/Areeba.png)
