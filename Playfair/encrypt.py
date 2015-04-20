@@ -59,15 +59,15 @@ def playfair_key_gen(key):
 def encrypt(message, key):
     plaintext_list = message_to_list(message)
     key_set = playfair_key_gen(key)
-    print(key_set)
+    # print(key_set)
     cipher_text = []
     for msg in plaintext_list:
         x = [x for x in key_set if msg[0] in x][0]
         i, j = key_set.index(x), x.index(msg[0])
-        print(msg[0])
+        # print(msg[0])
         y = [y for y in key_set if msg[1] in y][0]
         a, b = key_set.index(y), y.index(msg[1])
-        print(msg[1])
+        # print(msg[1])
         if i == a:
             # Same Row
             if b == 4:
@@ -93,7 +93,7 @@ def encrypt(message, key):
 
 
 msg = raw_input("enter message:")
-print(message_to_list(msg.upper()))
+# print(message_to_list(msg.upper()))
 key = raw_input("enter key:")
-print(playfair_key_gen(key))
+# print(playfair_key_gen(key))
 print(encrypt(msg.upper(), key))
