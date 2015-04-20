@@ -21,12 +21,12 @@ def message_to_list(plaintext):
         message.append("X")
 
     i = 0
-    new = []
-    for x in xrange(1, len(message) / 2 + 1):
-        new.append(message[i:i + 2])
+    plaintext_list = []
+    for x in range(1, len(message) / 2 + 1):
+        plaintext_list.append(message[i:i + 2])
         i = i + 2
 
-    return new
+    return plaintext_list
 
 
 def playfair_key_gen(key):
@@ -56,7 +56,44 @@ def playfair_key_gen(key):
     return playfair_key_group
 
 
+def encrypt(message, key):
+    plaintext_list = message_to_list(message)
+    key_set = playfair_key_gen(key)
+    print(key_set)
+    cipher_text = []
+    for msg in plaintext_list:
+        x = [x for x in key_set if msg[0] in x][0]
+        i, j = key_set.index(x), x.index(msg[0])
+        print(msg[0])
+        y = [y for y in key_set if msg[1] in y][0]
+        a, b = key_set.index(y), y.index(msg[1])
+        print(msg[1])
+        if i == a:
+            # Same Row
+            if b == 4:
+                b = -1
+            if j == 4:
+                j = -1
+            cipher_text.append(key_set[a][j + 1])
+            cipher_text.append(key_set[a][b + 1])
+        elif j == b:
+            # Same Column
+            if i == 4:
+                i = -1
+            if a == 4:
+                a = -1
+            cipher_text.append(key_set[i+1][b])
+            cipher_text.append(key_set[a+1][b])
+        else:
+            # Rectangle Case
+            cipher_text.append(key_set[i][b])
+            cipher_text.append(key_set[a][j])
+
+    return cipher_text
+
+
 msg = raw_input("enter message:")
-print(message_to_list(msg))
+print(message_to_list(msg.upper()))
 key = raw_input("enter key:")
 print(playfair_key_gen(key))
+print(encrypt(msg.upper(), key))
