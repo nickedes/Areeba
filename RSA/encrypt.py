@@ -1,3 +1,6 @@
+import random
+
+
 def is_prime(num):
     if num == 2:
         return True
@@ -8,10 +11,9 @@ def is_prime(num):
             return False
     return True
 
-"To find gcd of two numbers."
-
 
 def egcd(a, b):
+    "To find gcd of two numbers."
     if a == 0:
         return (b, 0, 1)
     else:
@@ -25,11 +27,14 @@ def invmod(e, m):
         return None
     else:
         return x % m
-"Generates public and private for encryption and decryption"
-"Public key : (e,n)"
 
 
 def public_private_key(p, q):
+    """
+    Generates public and private for encryption and decryption
+    Public key : (e,n)
+    Private key : (d,n)
+    """
     n = p * q
     m = (p - 1) * (q - 1)
     gcd = 0
@@ -63,22 +68,21 @@ def decrypt(key, msg):
 
 
 if __name__ == '__main__':
-    p = raw_input('Enter 1st Prime no.')
-    q = raw_input('Enter 2nd Prime no.')
+    p = int(raw_input('Enter 1st Prime no. '))
+    q = int(raw_input('Enter 2nd Prime no. '))
 
-    if not (is_prime(p) and is_prime(q)):
-        print("Entered No.s are not prime")
+    if is_prime(p) and is_prime(q):
+        public, private = public_private_key(p, q)
+        print "Public key: ", public
+        print "Private key: ", private
 
-    if p == q:
+        message = raw_input("Enter message: ")
+
+        ciphertext = encrypt(public, message)
+
+        print("Encrypted:", ciphertext)
+        print("decrypted:", decrypt(private, ciphertext))
+    elif p == q:
         print("primes no.s should be distinct")
-
-    public, private = public_private_key(p, q)
-    print "Public key: ", public
-    print "Private key: ", private
-
-    message = raw_input("Enter message: ")
-
-    ciphertext = encrypt(public, message)
-
-    print("Encrypted:", ciphertext)
-    print("decrypted:", decrypt(private, ciphertext))
+    else:
+        print("Entered No.s are not prime")
