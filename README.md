@@ -5,12 +5,13 @@ So she encrypts her messages using some encryption algorithms.
 
 She successfully encrypted her messages using:
 * Playfair cipher
-
+* RSA
 
 #Todo:
-* RSA
 * Transposition
 * Vigenere cipher
+* Synchronize her and afsha's clock [SOCKET]
+* File transfer with afsha (encrypted) [SOCKET]
 
 #Wanna Meet Areeba? 
 Here she is!!
