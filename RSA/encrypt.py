@@ -1,4 +1,4 @@
-import random
+from random import randrange
 
 
 def is_prime(num):
@@ -39,7 +39,7 @@ def public_private_key(p, q):
     m = (p - 1) * (q - 1)
     gcd = 0
     while gcd != 1:
-        e = random.randrange(1, m)
+        e = randrange(1, m)
         gcd, _, _ = egcd(e, m)
 
     d = invmod(e, m)

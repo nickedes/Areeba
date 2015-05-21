@@ -4,6 +4,7 @@ import string
 key = 43
 alphas = string.ascii_lowercase
 
+
 def decrypt(cipher_text):
     # Decrypts the file contents.
     decrypted = ""
@@ -14,16 +15,16 @@ def decrypt(cipher_text):
             decrypted += alphas[(alphas.index(cipher) + 26 - key) % 26]
     return decrypted
 
-s = socket.socket()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = socket.gethostname()
 port = 12345
 s.bind((host, port))
-f = open('test/test_recv.txt', 'wb')
 s.listen(5)
 
 while True:
     c, addr = s.accept()
     print 'Got connection from', addr
+    f = open('test/test_recv.txt', 'wb')
     # Receive file.
     while True:
         cipher_text = c.recv(1024)
