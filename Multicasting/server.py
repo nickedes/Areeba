@@ -15,4 +15,4 @@ para = raw_input("Enter text:")
 
 while True:
     c, addr = s.accept()
-    start_new_thread(client_work, (c, para))
+    start_new_thread(client_work, (c, para.lower()))
