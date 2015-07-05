@@ -14,7 +14,7 @@ class RSATestCase(unittest.TestCase):
     def test_negative_number(self):
         """Is a negative number correctly determined not to be prime?"""
         for index in range(-1, -10, -1):
-            self.assertFalse(is_prime(index))
+            self.assertFalse(is_prime(index), msg='{} should not be determined to be prime'.format(index))
 
 
 if __name__ == '__main__':
