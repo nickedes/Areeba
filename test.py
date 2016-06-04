@@ -8,7 +8,9 @@ def egcd(a, b):
 
 
 if __name__ == '__main__':
-    a, b = 84, 13
+    x = input("Enter a and b - a is whose inverse is to be found and b is mod value")
+    a, b = x.split(" ")
+    a, b = int(a), int(b)
     g, x, y = egcd(a, b)
     if(g != 1):
         print("No inverse exists")
